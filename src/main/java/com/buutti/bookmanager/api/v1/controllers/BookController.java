@@ -1,10 +1,10 @@
 package com.buutti.bookmanager.api.v1.controllers;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +22,7 @@ import com.buutti.bookmanager.api.v1.services.BookService;
 @RequestMapping("/api/v1")
 public class BookController {
     private final BookService service;
+    private final Logger logger = Logger.getLogger(BookController.class.getName());
 
     @Autowired
     public BookController(BookService service) {
@@ -31,30 +32,40 @@ public class BookController {
     @GetMapping("/books")
     public ResponseEntity<List<BookDTO>> getBooks() {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(service.getBooks());
+            return service.getBooks();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(500).body(null);
+            logger.warning(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @PostMapping("/books")
     public ResponseEntity<List<BookDTO>> postBooks(@RequestBody List<BookDTO> books) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(service.postBooks(books));
+            return service.postBooks(books);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(500).body(null);
+            logger.info(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @PutMapping("/book")
-    public BookDTO putBook(@RequestBody BookDTO book) {
-        return service.putBook(book);
+    public ResponseEntity<BookDTO> putBook(@RequestBody BookDTO book) {
+        try {
+            return service.putBook(book);
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @DeleteMapping("/book/{id}")
-    public void deleteBookById(@PathVariable("id") String id) {
-        service.deleteBook(id);
+    public ResponseEntity<Void> deleteBookById(@PathVariable("id") String id) {
+        try {
+            return service.deleteBook(id);
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 }

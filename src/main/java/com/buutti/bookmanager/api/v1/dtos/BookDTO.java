@@ -1,18 +1,20 @@
 package com.buutti.bookmanager.api.v1.dtos;
 
+import java.util.UUID;
+
 import com.buutti.bookmanager.api.v1.entities.BookEntity;
 
 public class BookDTO {
-    private String id;
+    private UUID id;
     private String title;
     private String author;
     private String description;
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

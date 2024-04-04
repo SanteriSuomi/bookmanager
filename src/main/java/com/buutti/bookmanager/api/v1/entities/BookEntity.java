@@ -1,27 +1,30 @@
 package com.buutti.bookmanager.api.v1.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
+import java.util.UUID;
 
 import com.buutti.bookmanager.api.v1.dtos.BookDTO;
 
 @Entity
 public class BookEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
-
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private String title;
     private String author;
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
