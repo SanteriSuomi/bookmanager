@@ -30,9 +30,20 @@ jar {
   	}
 }
 
-task run(type: JavaExec) {
+task buildFrontend(type: Exec) {
+    workingDir = file('frontend')
+    String npmCommand = System.getProperty('os.name').toLowerCase().contains('windows') ? 'npm.cmd' : 'npm'
+    commandLine npmCommand, 'run', 'gradle-build'
+}
+
+task buildAndRunBackend(type: JavaExec) {
     main = 'com.buutti.bookmanager.BookmanagerApplication'
     classpath = sourceSets.main.runtimeClasspath
+}
+
+task run {
+    finalizedBy buildAndRunBackend
+    dependsOn buildFrontend
 }
 
 // tasks.named('test') {
