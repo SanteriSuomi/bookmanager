@@ -31,6 +31,11 @@ public class BookService {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedEntities.stream().map(BookEntity::toDTO).toList());
     }
 
+    public ResponseEntity<BookDTO> postBook(BookDTO book) {
+        final BookEntity savedEntity = repository.save(book.toEntity());
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedEntity.toDTO());
+    }
+
     public ResponseEntity<BookDTO> putBook(BookDTO book) {
         if (!repository.existsById(book.getId())) {
             return ResponseEntity.notFound().build();

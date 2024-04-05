@@ -1,14 +1,4 @@
-.content {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-}
-
-.content>div {
-    padding: 10px;
-}
-
-.book-list {
+.bookList {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -17,7 +7,7 @@
     row-gap: 15px;
 }
 
-.book-list-item {
+.bookListItem {
     display: flex;
     flex-direction: column;
     row-gap: 5px;
@@ -25,15 +15,21 @@
     padding: 5px;
 }
 
-.book-list-item:hover {
+.bookListItemSelected {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    width: 95%;
+    padding: 5px;
+    border: 1px solid white;
+}
+
+.bookListItem:hover {
     border: 1px solid white;
     cursor: pointer;
 }
 
-.book-list-item>p {
+.bookListItem>p,
+.bookListItemSelected>p {
     margin: 0;
-}
-
-.book-details {
-    flex: 1;
 }
