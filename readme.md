@@ -1,22 +1,27 @@
-# Getting Started
+# Book Manager App
 
-### Reference Documentation
-For further reference, please consider the following sections:
+### Requirements
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.2.4/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.2.4/gradle-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/3.2.4/reference/htmlsingle/index.html#web)
+Requires Java, Node and NPM to be installed. Gradle also needs to be installed but the included wrapper should download it automatically.
 
-### Guides
-The following guides illustrate how to use some features concretely:
+### Running
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
+#### 1. Gradle
 
-### Additional Links
-These additional references should also help you:
+The first option is to run the application with the included Gradle wrapper. 
 
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
+1. Navigate to the project root directory.
+2. Run the command ./gradlew run (Linux) or gradle.bat run (Windows).
+3. Wait for the build to finish. The application should now be available at localhost:8080.
 
+#### 2. Manual
+
+In case there are problems with the Gradle wrapper option, the application can be manually started.
+
+1. Go to the bookmanager/frontend directory found at the root.
+2. Run commands npm install and npm run build.
+3. Copy all files in the bookmanager/frontend/dist directory to bookmanager/src/main/resources/static.
+4. Navigate back to the project root directory.
+5. Run the command ./gradlew run (Linux) or gradle.bat run (Windows).
+6. If the above command does not work, try running Gradle installed on the system: gradle build.
+7. Now run the application itself using java -jar build/libs/bookmanager-1.0.0-SNAPSHOT.jar. The application should now be available at localhost:8080.
