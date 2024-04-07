@@ -45,7 +45,3 @@ task run {
     finalizedBy buildAndRunBackend
     dependsOn buildFrontend
 }
-
-// tasks.named('test') {
-// 	useJUnitPlatform()
-// }

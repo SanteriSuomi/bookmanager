@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getBooks } from '../../services/BookService';
 import { Book } from '../../types';
-import BookDetails from '../bookdetails';
-import BookList from '../booklist';
+import BookDetails from '../details';
+import BookList from '../list';
 import style from './style.module.css';
 
 function App() {
