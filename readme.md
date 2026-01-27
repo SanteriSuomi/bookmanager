@@ -2,7 +2,7 @@
 
 ### Intro
 
-Simple full-stack application for managing books.
+Simple full-stack application for managing books (Job application assignment).
 
 ### Requirements
 
